@@ -4,6 +4,8 @@
       "target": "ESNext",
       "moduleResolution": "node",
       "lib": ["DOM", "ESNext"],
+      "isolatedModules": true,
+      "esModuleInterop": true,
       "jsx": "react-jsx"
     }
   }
