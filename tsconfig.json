@@ -1,12 +1,59 @@
 {
     "compilerOptions": {
-        "module": "preserve",
-        "target": "ESNext",
-        "moduleResolution": "bundler",
-        "isolatedModules": true,
-        "esModuleInterop": true,
-        "jsx": "react-jsx",
+        // Allow JavaScript files to be imported by the project, instead of
+        // just .ts and .tsx files.
         "allowJs": true,
+        // Maximum flexibility from the module imports, allowing for
+        // non-spec compliant exports (e.g. default function exports)
+        "esModuleInterop": true,
+        // Issue an error if we try to include a file by a casing
+        // different from the casing on disk.
+        "forceConsistentCasingInFileNames": true,
+        // Tell TypeScript to warn us if we write code that can’t
+        // be correctly interpreted by a single-file transpilation
+        // process (e.g. Babel).
+        "isolatedModules": true,
+        // Keeps the format of each individual import or export statement
+        // so the downstream consumer can process.
+        "module": "Preserve",
+        // Best of both worlds module resolution: imports and exports plus
+        // support for extension-less resolution.
+        "moduleResolution": "Bundler",
+        // Always unix-y line endings
+        "newLine": "lf",
+        // Typescript is only being used for typechecking here: there is no
+        // emission of transpiled code. On the frontend, Parcel does further
+        // transpilation. On the backed, it's TSX (using esbuild under the
+        // hood.
+        "noEmit": true,
+        // Allow imports of JSON
+        "resolveJsonModule": true,
+        // Null checks, no-implicit-any & more checks that improve
+        // correctness.
+        "strict": true,
+        // Changes which JS features are downleveled and which are left intact.
+        // The special ESNext value refers to the highest version of JS our
+        // current version of TypeScript supports.
+        "target": "ESNext",
+
+
+         // Emit .jsx files with the JSX unchanged. This allows
+        // other transpilation steps to handle JSX as needed.
+        // Specifically in this repo, that's parcel/babel.
+        "jsx": "react-jsx",
+        // We're in the browser!
+        "lib": ["dom", "dom.iterable"],
+        // Very important for debugging. This will generate source maps
+        // that will allow you to see the original TypeScript code in
+        // the browser's dev tools.
         "sourceMap": true
-    }
+    },
+    "exclude": ["node_modules", "coverage", "coverage-ts", "dist"],
+    "include": [
+        "globals.d.ts",
+        "../common/**/*.ts",
+        "../common/**/*.tsx",
+        "./**/*.ts",
+        "./**/*.tsx"
+    ]
 }
