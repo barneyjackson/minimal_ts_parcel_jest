@@ -7,3 +7,8 @@ declare global {
         gtag: (...args: any[]) => void;
     }
 }
+
+declare module "*.svg" {
+    const content: string; // Type depends on how SVGs are used...
+    export default content;
+  }
